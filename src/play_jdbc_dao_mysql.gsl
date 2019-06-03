@@ -44,7 +44,15 @@ class $(entity.name:Pascal)DAO @Inject() ($(dao_output_depended_dao_defs(entity,
 
   val whereClause = WhereClauseWithNamedParams(fieldConverter)
 
-  def parseParam(fieldName: String, paramName:String, paramValue: String): NamedParameter = $(dao_output_param_parser(entity))
+  private def parseParam(fieldName: String, paramName:String, paramValue: scala.Any): NamedParameter = paramValue match {
+    case x: String => parseParam(fieldName, paramName, x)
+    case x: Array[String] => parseParam(fieldName, paramName, x.toSeq)
+    case x: scala.Any => throw new RuntimeException(x.toString)
+  }
+
+  private def parseParam(fieldName: String, paramName:String, paramValue: String): NamedParameter = $(dao_output_param_parser(entity))
+
+  private def parseParam(fieldName: String, paramName:String, paramValue: Seq[String]): NamedParameter = $(dao_output_array_param_parser(entity))
 
   private def rowParser(implicit c: Connection): RowParser[$(entity.name:Pascal)Vo] = $(dao_output_result_parser(entity))
 

@@ -8,7 +8,7 @@ publishTo := Some(Resolver.file("file",  new File(Path.userHome.absolutePath+"/.
 libraryDependencies ++= {
   val jodaTimeVersion = "2.10.1"
   Seq(
-    "com.github.apuex.springbootsolution" %% "runtime"     % "1.0.7",
+    "com.github.apuex.springbootsolution" %% "runtime"     % "1.0.8",
     "org.scala-lang.modules" %% "scala-xml"                % "1.2.0",
     "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2",
     "org.scala-lang.modules" %% "scala-swing"              % "2.1.1",
