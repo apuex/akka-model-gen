@@ -11,5 +11,6 @@ To view detailed issues & commits, see
 
 ```
 sbt assembly
-java -jar target/scala-2.12/akka-model-gen.jar generate-project your-model.xml
+cd your-model
+java -jar target/scala-2.12/akka-model-gen.jar generate-projects your-model.xml
 ```
